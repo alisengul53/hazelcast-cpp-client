@@ -26,6 +26,7 @@ jobs:
 
   run-tests:
     runs-on: ubuntu-latest
+    needs: [check_for_membership]
     if: github.event_name == 'push' || needs.check_for_membership.outputs.check-result == 'true' || github.event_name == 'workflow_dispatch'
     name: Create and upload coverage
     steps:
